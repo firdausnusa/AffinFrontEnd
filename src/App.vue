@@ -1,55 +1,51 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-app-bar app color="primary" dark prominent shrink-on-scroll min-height="100" :src="appBarImage()">
+      <v-img
+      max-width="320"
+      height="80"
+      :src="logo()"
+    ></v-img>
+      <v-toolbar-title class="pl-16">
+        Customer Information Management
+      </v-toolbar-title>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <template v-slot:extension>
+        <v-tabs align-with-title>
+          <v-tab to="/">Customers</v-tab>
+          <v-tab to="/register">Register</v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
+    <v-sheet color="indigo lighten-5 rounded">
+      <v-container style="height: 700px; margin-top: 250px;" >
+        <router-view/>
+      </v-container>
+    </v-sheet>
   </v-app>
 </template>
 
 <script>
+import BarImage from '@/assets/appBarBackground.png'
+import AffinLogo from '@/assets/AffinLogo.png'
 
 export default {
   name: 'App',
 
   data: () => ({
-    //
+    
   }),
+  methods: {
+    appBarImage() {
+      return BarImage
+    },
+    logo() {
+      return AffinLogo
+    }
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
